@@ -1,7 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
+import { fetch_letter } from '../utils/alphabet';
+
 export default class Letter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      current_letter: 0,
+      current_letter_bg: '#ff6600'
+    }
+  }
   animateLetter = (letter) => {
     let audio_src = '../media/sounds/The_Farmer_In_The_Dell_Instrumental.mp3';
 
@@ -15,7 +24,24 @@ export default class Letter extends React.Component {
     } catch (error) {
       // An error occurred!
     }
+  }
 
+  gotoLetter = (op) => {
+    if (op == 'next') {
+      if (this.state.current_letter <= 2) {
+        this.setState({
+          current_letter: this.state.current_letter + 1
+        })
+      }
+    }
+
+    if (op == 'prev') {
+      if (this.state.current_letter > 0) {
+        this.setState({
+          current_letter: this.state.current_letter - 1
+        })
+      }
+    }
   }
   render() {
     return (
@@ -24,9 +50,15 @@ export default class Letter extends React.Component {
           <Text
             style={styles.letter}
           >
-            A
+            {fetch_letter(this.state.current_letter).code}
         </Text>
         </View>
+        <Text onPress={()=>this.gotoLetter('prev')} style={styles.nextButton}>
+          Previous
+        </Text>
+        <Text onPress={()=>this.gotoLetter('next')} style={styles.nextButton}>
+          Next
+        </Text>
       </TouchableOpacity>
     );
   }
@@ -45,5 +77,9 @@ const styles = StyleSheet.create({
   letter: {
     color: '#ffffff',
     fontSize: 350
+  },
+  nextButton: {
+    color: '#ffffff',
+    padding: 30
   }
 });
