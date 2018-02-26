@@ -1,11 +1,11 @@
 const letters = [
   {
     code: 'A',
-    bg: '#ff6600'
+    bg: '#1edc1b'
   },
   {
     code: 'B',
-    bg: '#ff6600'
+    bg: '#05a5d1'
   },
   {
     code: 'C',
@@ -13,7 +13,7 @@ const letters = [
   },
   {
     code: 'D',
-    bg: '#ff6600'
+    bg: '#e111ef'
   }
 
 

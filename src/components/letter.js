@@ -8,29 +8,28 @@ export default class Letter extends React.Component {
     super(props);
     this.state = {
       current_letter: 0,
-      current_letter_bg: '#ff6600'
     }
   }
   animateLetter = (letter) => {
-    let audio_src = '../media/sounds/The_Farmer_In_The_Dell_Instrumental.mp3';
+    // let audio_src = '../media/sounds/The_Farmer_In_The_Dell_Instrumental.mp3';
 
-    const soundObject = new Expo.Audio.Sound();
+    // const soundObject = new Expo.Audio.Sound();
 
-    try {
-      const { soundObject, status } = Expo.Audio.Sound.create(
-        require(audio_src),
-        { shouldPlay: true }
-      );
-    } catch (error) {
-      // An error occurred!
-    }
+    // try {
+    //   const { soundObject, status } = Expo.Audio.Sound.create(
+    //     require(audio_src),
+    //     { shouldPlay: true }
+    //   );
+    // } catch (error) {
+    //   // An error occurred!
+    // }
   }
 
   gotoLetter = (op) => {
     if (op == 'next') {
       if (this.state.current_letter <= 2) {
         this.setState({
-          current_letter: this.state.current_letter + 1
+          current_letter: this.state.current_letter + 1,
         })
       }
     }
@@ -38,7 +37,7 @@ export default class Letter extends React.Component {
     if (op == 'prev') {
       if (this.state.current_letter > 0) {
         this.setState({
-          current_letter: this.state.current_letter - 1
+          current_letter: this.state.current_letter - 1,
         })
       }
     }
@@ -47,18 +46,20 @@ export default class Letter extends React.Component {
     return (
       <TouchableOpacity onPress={() => this.animateLetter('a')}>
         <View style={styles.container}>
-          <Text
-            style={styles.letter}
-          >
-            {fetch_letter(this.state.current_letter).code}
+          <View style={{'backgroundColor': `${fetch_letter(this.state.current_letter).bg}`, 'padding': '15%'}}>
+            <Text
+              style={styles.letter}
+            >
+              {fetch_letter(this.state.current_letter).code}
+            </Text>
+          </View>
+          <Text onPress={() => this.gotoLetter('prev')} style={styles.nextButton}>
+            Previous
+        </Text>
+          <Text onPress={() => this.gotoLetter('next')} style={styles.nextButton}>
+            Next
         </Text>
         </View>
-        <Text onPress={()=>this.gotoLetter('prev')} style={styles.nextButton}>
-          Previous
-        </Text>
-        <Text onPress={()=>this.gotoLetter('next')} style={styles.nextButton}>
-          Next
-        </Text>
       </TouchableOpacity>
     );
   }
@@ -66,13 +67,10 @@ export default class Letter extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '70%',
-    height: '70%',
-    backgroundColor: '#ff6600',
+    width: 320,
+    height: 'auto',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 150,
-    marginTop: 100,
   },
   letter: {
     color: '#ffffff',
