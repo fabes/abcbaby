@@ -27,7 +27,7 @@ export default class Letter extends React.Component {
 
   gotoLetter = (op) => {
     if (op == 'next') {
-      if (this.state.current_letter <= 2) {
+      if (this.state.current_letter <= 24) {
         this.setState({
           current_letter: this.state.current_letter + 1,
         })
