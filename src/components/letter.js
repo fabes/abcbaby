@@ -7,6 +7,12 @@ import {
   Image
 } from 'react-native';
 
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize
+} from 'react-native-responsive-dimensions'; 
+
 import { fetch_letter } from '../utils/alphabet';
 
 import PrevBtn from '../media/images/prev-btn.png';
@@ -62,11 +68,11 @@ export default class Letter extends React.Component {
               {fetch_letter(this.state.current_letter).code}
             </Text>
           </View>
-          <Text onPress={() => this.gotoLetter('prev')} style={styles.nextButton}>
-            <Image source={PrevBtn} />
+          <Text onPress={() => this.gotoLetter('prev')} style={styles.btn_wrapper}>
+            <Image source={PrevBtn} style={styles.prev_nextButton} />
           </Text>
-          <Text onPress={() => this.gotoLetter('next')} style={styles.nextButton}>
-            <Image source={NextBtn} />
+          <Text onPress={() => this.gotoLetter('next')} style={styles.btn_wrapper}>
+            <Image source={NextBtn} style={styles.prev_nextButton} />
           </Text>
         </View>
       </TouchableOpacity>
@@ -76,17 +82,23 @@ export default class Letter extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: 220,
+    width: responsiveWidth(75),
+    height: responsiveHeight(50),
     height: 'auto',
     alignItems: 'center',
     justifyContent: 'center',
   },
   letter: {
     color: '#ffffff',
-    fontSize: 150
+    fontSize: responsiveFontSize(25)
   },
-  nextButton: {
-    color: '#ffffff',
-    padding: 30
+  prev_nextButton: {
+    width: 700,
+    height: 200,
+  },
+  btn_wrapper: {
+    marginBottom: 18,
+    marginTop: 18,
   }
+
 });
