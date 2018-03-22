@@ -1,7 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image
+} from 'react-native';
 
 import { fetch_letter } from '../utils/alphabet';
+
+import PrevBtn from '../media/images/prev-btn.png';
+import NextBtn from '../media/images/next-btn.png';
 
 export default class Letter extends React.Component {
   constructor(props) {
@@ -54,11 +63,11 @@ export default class Letter extends React.Component {
             </Text>
           </View>
           <Text onPress={() => this.gotoLetter('prev')} style={styles.nextButton}>
-            Previous
-        </Text>
+            <Image source={PrevBtn} />
+          </Text>
           <Text onPress={() => this.gotoLetter('next')} style={styles.nextButton}>
-            Next
-        </Text>
+            <Image source={NextBtn} />
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -67,14 +76,14 @@ export default class Letter extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: 320,
+    width: 220,
     height: 'auto',
     alignItems: 'center',
     justifyContent: 'center',
   },
   letter: {
     color: '#ffffff',
-    fontSize: 350
+    fontSize: 150
   },
   nextButton: {
     color: '#ffffff',
