@@ -1,22 +1,17 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
   Image
 } from 'react-native';
 
-import {
-  responsiveHeight,
-  responsiveWidth,
-  responsiveFontSize
-} from 'react-native-responsive-dimensions'; 
-
 import { fetch_letter } from '../utils/alphabet';
 
-import PrevBtn from '../media/images/prev-btn.png';
-import NextBtn from '../media/images/next-btn.png';
+import PrevBtn from '../assets/images/prev-btn.png';
+import NextBtn from '../assets/images/next-btn.png';
+
+import { styles } from '../assets/styles/main';
 
 export default class Letter extends React.Component {
   constructor(props) {
@@ -79,26 +74,3 @@ export default class Letter extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: responsiveWidth(75),
-    height: responsiveHeight(50),
-    height: 'auto',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  letter: {
-    color: '#ffffff',
-    fontSize: responsiveFontSize(25)
-  },
-  prev_nextButton: {
-    width: 700,
-    height: 200,
-  },
-  btn_wrapper: {
-    marginBottom: 18,
-    marginTop: 18,
-  }
-
-});
